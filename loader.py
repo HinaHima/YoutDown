@@ -1,13 +1,12 @@
 # loading modules and frameworks needed
 import logging
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher, types
 from pytube import YouTube
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 # loading the token for the bot
 
 from config import TOKEN
 
-logging.basicConfig(level=logging.INFO)
-
 bot = Bot(token=TOKEN)
-dp = Dispatcher(bot)
+dp = Dispatcher(bot, storage=MemoryStorage())

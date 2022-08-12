@@ -1,12 +1,23 @@
 from pytube import YouTube
 
-yt = YouTube('https://www.youtube.com/watch?v=869p-_qZkRc')
+yt = YouTube('https://www.youtube.com/watch?v=S-kg8eVPXRQ')
 
 def options():
-    for option in yt.streams:
-        print(option)
+    resolutions = ['720p', '1080p', '1440p']
+    choices = {}
 
-#options()
+    for each_resolution in resolutions:
+        choice = yt.streams.filter(res=each_resolution)
+        choices[each_resolution] = choice
 
-stream = yt.streams.get_by_itag(137)
-stream.download(output_path='A:\Python_projects\ViDown\media')
+    try:
+        for i in choices.values():
+            print(i[0])
+    except IndexError:
+        message = f"Havn't found any video in such resolution:{each_resolution}"
+        return message
+
+
+options()
+#stream = yt.streams.get_by_itag(137)
+
